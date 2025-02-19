@@ -1,0 +1,20 @@
+html{
+    scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+  
+html::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: transparent;
+}
+  
+html::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, .5);
+    background-color: transparent;
+}
+  
