@@ -7,6 +7,7 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
   <link rel="stylesheet" href="./sources/styles/common.css">
   <link rel="icon" href="./sources/resources/icon.jpg">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
@@ -18,14 +19,21 @@
 </head>
 <body>
   <!-- 导入mermaid -->
-  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="//unpkg.com/mermaid/dist/mermaid.js"></script>
+  <script src="//unpkg.com/docsify-mermaid@2.0.1/dist/docsify-mermaid.js"></script>
   <!-- 自动导航到GitHub编辑页 -->
   <script src="./sources/js/docsify-edit-on-github.js"></script>
   <div id="app">等↓等→等↑等↓...</div>
   <script>
-    var docBase = 'https://github.com/Fanzhitianyu/Fanzhitianyu-notes/blob/main/';
+
+    mermaid.initialize({ 
+      startOnLoad: true
+    });
+    window.mermaid = mermaid;
     var mermaid_num = 0;
-    mermaid.initialize({ startOnLoad: false });
+    
+    var docBase = 'https://github.com/Fanzhitianyu/Fanzhitianyu-notes/blob/main/';
+
 
     window.$docsify = {
       name: 'Fanzhitianyu\'s notes',
@@ -39,6 +47,9 @@
       sidebarDisplayLevel: 1,
       topMargin: 90, // 滚动到锚点是与顶部的距离
       auto2top: true, // 切换页面后跳回页面顶部
+      mermaidConfig: {
+        querySelector: ".mermaid"
+      },
       search: {
         paths: 'auto',
         placeholder: '搜索',
@@ -67,7 +78,7 @@
           code: function(code, lang) {
             if (lang === "mermaid") {
             return (
-              '<div class="mermaid">' + mermaid.render('mermaid-svg-' + mermaid_num++, code) + "</div>"
+              '<div class="mermaid">' + code + "</div>"
             );
             }
         return this.origin.code.apply(this, arguments);
@@ -98,9 +109,10 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/pure.css">
   <!-- 分页导航 -->
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <!-- Latex -->
+
   <script src="//cdn.jsdelivr.net/npm/marked@4"></script>
+  <!-- Latex -->
+  <script src="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <!-- CDN files for docsify-katex -->
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
   <!-- or <script src="//cdn.jsdelivr.net/gh/upupming/docsify-katex@latest/dist/docsify-katex.js"></script> -->

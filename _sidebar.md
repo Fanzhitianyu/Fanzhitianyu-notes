@@ -3,6 +3,8 @@
 ---
 
 - [数学](./Math/README.md)
+  - [微积分](./Math/Calculus/README.md)
+    - [有意思的题](./Math/Calculus/一些有意思的题.md)
 
 ---  
 
