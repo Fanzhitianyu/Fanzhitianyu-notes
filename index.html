@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
   <link rel="stylesheet" href="./sources/styles/common.css">
-  <link rel="icon" href="./sources/resources/icon.jpg">
+  <link rel="icon" href="./sources/resources/icon.webp">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
   <!-- 侧边栏折叠-箭头样式 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
@@ -27,7 +27,7 @@
   <script>
 
     mermaid.initialize({ 
-      startOnLoad: true
+      startOnLoad: false
     });
     window.mermaid = mermaid;
     var mermaid_num = 0;
@@ -41,7 +41,6 @@
       loadSidebar: true,
       loadNavbar: true,
       coverpage: true,
-      autoHeader: true,
       notFoundPage: true,
       subMaxLevel: 3,
       sidebarDisplayLevel: 1,
@@ -86,6 +85,12 @@
         }
       },plugins: [
         EditOnGithubPlugin.create(docBase, null, 'Edit this page 😋'),
+        function (hook, vm) {
+          hook.doneEach(function(content) {
+            mermaid.init()
+            return content;
+          });
+        }
       ]
     }
   </script>
