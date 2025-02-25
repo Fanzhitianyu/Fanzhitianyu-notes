@@ -143,43 +143,147 @@
 
 > expr 表示表达式，val 表示变量，collection 表示集合，condition 表示条件
 
-1. 列表推导式:  
+### 1. 列表推导式
+
    > [expr for val in collection if condition]  
 
    例：[x * x for x in range(1,11) if x % 2 == 0]
 
-2. 集合推导式:  
+### 2. 集合推导式
+
    > {expr for val in collection if condition}  
 
    例：{x * x for x in range(1,11) if x % 2 == 0}
 
-3. 字典推导式:
+### 3. 字典推导式
+
    > {key:expr for key,val in collection if condition}  
 
    例：{x:x * x for x in range(1,11) if x % 2 == 0}  
 
->[!WARNING]
->我还有点没理解,可能有点问题，但是先睡
+### 4. 嵌套推导式
 
-1. 嵌套推导式:
+> 这些推导式都是可以嵌套的，嵌套的推导式会先执行内层推导式，再执行外层推导式。  
+> _ps:感觉还是较为抽象的_  
 
-> 这些推导式都是可以嵌套的，嵌套的推导式会先执行内层推导式，再执行外层推导式。
-例:
+- 嵌套列表推导式
 
 ```python
-//扁平化推导式
-some_tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
-flattened = [x for tup in some_tuples for x in tup]
-flattened
-[1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-//与for循环的顺序一致
-for tup in some_tuples:
-    for x in tup:
-        flattened.append(x)
+    //创建嵌套列表
+    [[x for x in tup] for tup in some_tuples]
+    //与以下for循环一致
+    for tup in some_tuples:      # 遍历每个元组
+        sublist = [x for x in tup]  # 将元组转换为列表
+        result.append(sublist)      # 将子列表添加到结果中
 ```
 
-![扁平化嵌套推导式理解图](img/python基础_嵌套推导式.png)
+- 扁平化推导式
+
+    ```python
+    some_tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+    //推导式
+    flattened = [x for tup in some_tuples for x in tup]
+    /*
+    外层:for tup in some_tuples
+    内层:for x in tup
+    */
+    flattened
+    [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    //与for循环的顺序一致
+    for tup in some_tuples:
+        for x in tup:
+            flattened.append(x)
+    ```
+
+## 函数
+
+> 函数是python中一个很重要的概念，函数可以接受任意数量的参数，并且可以返回一个或多个值。
+
+1. **定义**:  
+   - 函数是Python中最主要也是最重要的代码组织和复用手段
+2. **调用**:  
+   - 调用函数时，需要使用函数名，并传递参数。
+3. **参数**:
+   - 函数可以接受**任意数量**的参数。
+   - 参数可以是**位置参数**、**关键字参数**、**默认参数**。  
+   - **位置参数**和**关键字参数**可以**混合使用**，但**位置参数**必须**先出现**
+   - **默认参数**放于形参末尾
+   - 符号分割类型（python3.8+）: ' / '之前为位置参数，' * '之后为关键字参数
+4. **变量作用域**:
+   - 作用域分为 **gobal** 和 **local** 两种。
+   - 函数内部定义的变量，在函数内部可见，在函数外部不可见。
+   - **gobal** 作用域：在函数内部设置全局变量
+5. **返回值**:
+   - 函数可以返回一个或多个值(将返回多个值的元组)
+6. **lambda**:
+   - lambda 函数是 Python 中的一个内置函数，它允许我们创建匿名函数，即在运行时定义函数。
+   - 可以接受任意数量的参数，并且可以返回一个值。
+   - **语法格式**：lambda [参数1[, 参数2, ...]]: 表达式
+   - **例**: lambda x, y: x + y
+7. **装饰器**:
+   - 装饰器是一个函数，它接受一个函数作为参数，并返回一个包装函数。
+   - 装饰器可以用于**修改函数的行为**，**添加附加功能**，**记录函数调用**，**性能分析**等。
+  
+   ```python
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            print("调用函数前")
+            result = func(*args, **kwargs)
+            print("调用函数后")
+            return result
+        return wrapper
+    
+    @decorator
+    def my_function(*args, **kwargs):
+        print("正在调用函数")
+   ```
+
+8. **偏函数**:
+   - 偏函数是一个函数，它接受一个函数作为参数，并返回一个包装函数。
+   - 偏函数就是对源函数填充部分参数并包装为一个新的函数，也称为柯里化。
+
+    ```python
+    def add_numbers(x, y):
+       return x + y
+    
+    add_five = lambda y: add_numbers(5, y)
+
+    print(add_five(10)) //15
+    ```
+
+    也可以通过 functools.partial 来实现。
+
+    ```python
+    from functools import partial
+
+    def add_numbers(x, y):
+       return x + y
+    
+    add_five = partial(add_numbers, 5)
+
+    print(add_five(10)) //15
+    ```
+
+9. **生成器**:
+    - 生成器用于新可迭代对象的迭代器的方法，它使用 **yield** 关键字来定义。
+    - 生成器在每次迭代时都会计算下一个值，并在需要时返回该值，而不会立即计算整个序列。
+    - **迭代器** iter(dict) 这一方法会返回迭代器对象，用于迭代字典，列表，元组等。
+
+    ```python
+        //创建方式将原本需要存储为列表的数据通过yield直接返回
+        //yield会使生成器暂停，直到再次调用该方法
+        def squares(n=10):
+            for i in range(1, n + 1):
+                yield i ** 2
+    ```
+
+    - **生成器表达式**和列表推导式类似，但生成的是生成器对象，而不是列表。
+
+    ```python
+    //只需要将原本的**列表推导式**的**方括号**改为**小括号**即可
+    squares = (x ** 2 for x in range(1, 11))
+    ```
 
 ## 一些寄巧
 
