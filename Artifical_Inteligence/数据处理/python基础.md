@@ -116,8 +116,8 @@
     - 补集: `set1 ^ set2` 或 `set1.symmetric_difference(set2)` // 只在set1或set2中，不在交集中的元素
 
     > 可以通过 set1 &= set2 或 set1.intersection_update(set2) 来更新 set1  
-    > 可以通过 set1 |= set2 或 set1.update(set2) 来更新 set1
-    > 可以通过 set1 -= set2 或 set1.difference_update(set2) 来更新 set1
+    > 可以通过 set1 |= set2 或 set1.update(set2) 来更新 set1  
+    > 可以通过 set1 -= set2 或 set1.difference_update(set2) 来更新 set1  
     > 可以通过 set1 ^= set2 或 set1.symmetric_difference_update(set2) 来更新 set1
 
 6. **其他操作**:
