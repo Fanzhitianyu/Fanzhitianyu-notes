@@ -18,6 +18,7 @@
 - [人工智能](./Artifical_Inteligence/README.md)
   - [数据处理](./Artifical_Inteligence/数据处理/README.md)
     - [python基础](./Artifical_Inteligence/数据处理/python基础.md)
+    - [numpy](./Artifical_Inteligence/数据处理/Numpy基础.md)
 
 ---
 
