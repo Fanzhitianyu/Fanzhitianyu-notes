@@ -313,3 +313,9 @@
     print(type(set).mro())
     //[<class 'set'>, <class 'object'>]
     ```
+
+5. pikle 模块
+
+> pikle模块实现了对一个 Python 对象结构的二进制序列化和反序列化  
+> [参考文档](https://docs.python.org/zh-cn/3.10/library/pickle.html)  
+

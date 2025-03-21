@@ -19,6 +19,7 @@
   - [数据处理](./Artifical_Inteligence/数据处理/README.md)
     - [python基础](./Artifical_Inteligence/数据处理/python基础.md)
     - [numpy](./Artifical_Inteligence/数据处理/Numpy基础.md)
+    - [pandas](./Artifical_Inteligence/数据处理/pandas基础.md)
 
 ---
 
