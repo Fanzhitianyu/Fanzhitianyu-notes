@@ -292,10 +292,14 @@ ufunc可以接收一个out参数作为返回位置
 ## 数组文件操作  
 
 1. 保存文件  
-    `np.save('arr.npy', arr)`| #3cadc1{保存数组到文件}
-    `np.savetxt('arr.txt', arr)`| #3cadc1{保存数组到文件，文本格式}
-    `np.savez('arr.npz', arr1=arr1, arr2=arr2)`| #3cadc1{保存多个数组到文件}
-    `np.savez_compressed('arr.npz', arr1=arr1, arr2=arr2)`| #3cadc1{保存多个数组到文件，压缩}
+    `np.save('arr.npy', arr)`| #3cadc1{保存数组到文件}  
+    `np.savetxt('arr.txt', arr)`| #3cadc1{保存数组到文件，文本格式}  
+    `np.savez('arr.npz', arr1=arr1, arr2=arr2)`| #3cadc1{保存多个数组到文件}  
+    `np.savez_compressed('arr.npz', arr1=arr1, arr2=arr2)`| #3cadc1{保存多个数组到文件，压缩}  
 2. 读取文件  
-    `np.load('arr.npy')`| #3cadc1{读取数组文件}
-    `np.loadtxt('arr.txt')`| #3cadc1{读取数组文件，文本格式}
+    `np.load('arr.npy')`| #3cadc1{读取数组文件}  
+    `np.loadtxt('arr.txt')`| #3cadc1{读取数组文件，文本格式}  
+
+## 其他
+
+>numpy还支持矩阵运算，以及随机数生成等功能，建议直接查找官方文档。  
